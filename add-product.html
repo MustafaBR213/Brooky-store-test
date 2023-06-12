@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Your description">
+  <meta name="author" content="Your name">
+
+  <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
+<meta property="og:site_name" content="" /> <!-- website name -->
+<meta property="og:site" content="" /> <!-- website link -->
+<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+<meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
+
+  <!-- Webpage Title -->
+  <title>Brooky Webpage Title</title>
+  
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/fontawesome-all.min.css" rel="stylesheet">
+  <link href="css/swiper.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+
+<!-- Favicon  -->
+  <link rel="icon" href="images/favicon.png">
+<style>
+    body{
+        margin: 0px;
+        padding: 0px;
+    }
+    .footer {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+    }
+    
+    .footer p {
+        margin: 0;
+    }
+    form{
+        
+        margin: 100px;
+        height: 430px;
+    }
+</style>
+</head>
+<body>
+        <!-- Navigation -->
+    <nav id="navbarExample" class="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation">
+      <div class="container">
+
+          <!-- Image Logo -->
+          <a class="navbar-brand logo-image" href="index.html" style="text-decoration: none;"><span class="blue" style="font-size: 28px;">Br</span>ooky</a> 
+
+          <!-- Text Logo - Use this if you don't have a graphic logo -->
+          <!-- <a class="navbar-brand logo-text" href="index.html">Brooky</a> -->
+
+          <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+              <ul class="navbar-nav ms-auto navbar-nav-scroll">
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#header">Home</a>
+                  </li>
+                
+              </ul>
+              <span class="nav-item">
+                  <a class="btn-solid-sm" href="add-product.html">Add Product</a>
+              </span>
+          </div> <!-- end of navbar-collapse -->
+      </div> <!-- end of container -->
+  </nav> <!-- end of navbar -->
+  <!-- end of navigation -->
+
+            <!-- HTML form for adding a new product -->
+        <form id="addProductForm">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title" required>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input type="number" class="form-control" id="price" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+          </form>
+          
+          <!-- JavaScript code to handle form submission -->
+          <script>
+            // Function to handle form submission
+            async function addProduct(event) {
+              event.preventDefault(); // Prevent form submission
+        
+              // Get form input values
+              const title = document.getElementById('title').value;
+              const description = document.getElementById('description').value;
+              const price = document.getElementById('price').value;
+        
+              // Create a new product object
+              const newProduct = {
+                title: title,
+                description: description,
+                price: price
+              };
+        
+              try {
+                // Send a POST request to the API endpoint
+                const response = await fetch('https://dummyjson.com/products/add', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(newProduct)
+                });
+        
+                if (response.ok) {
+                  // Product added successfully
+                  alert('Product added successfully!');
+                  
+                  // Clear the form inputs
+                  document.getElementById('title').value = '';
+                  document.getElementById('description').value = '';
+                  document.getElementById('price').value = '';
+                } else {
+                  // Error adding product
+                  alert('Error adding product. Please try again.');
+                }
+              } catch (error) {
+                // Error handling the request
+                alert('An error occurred. Please try again later.');
+              }
+            }
+        
+            // Attach event listener to the form submit event
+            document.getElementById('addProductForm').addEventListener('submit', addProduct);
+
+            
+          </script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.5.0/js/bootstrap.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+              <!-- Footer -->
+    <div class="footer bg-gray">
+      <img class="decoration-city" src="images/decoration-city.svg" alt="alternative">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="social-container">
+                      <span class="fa-stack">
+                          <a href="#your-link">
+                              <i class="fas fa-circle fa-stack-2x"></i>
+                              <i class="fab fa-facebook-f fa-stack-1x"></i>
+                          </a>
+                      </span>
+                      <span class="fa-stack">
+                          <a href="#your-link">
+                              <i class="fas fa-circle fa-stack-2x"></i>
+                              <i class="fab fa-twitter fa-stack-1x"></i>
+                          </a>
+                      </span>
+                      <span class="fa-stack">
+                          <a href="#your-link">
+                              <i class="fas fa-circle fa-stack-2x"></i>
+                              <i class="fab fa-pinterest-p fa-stack-1x"></i>
+                          </a>
+                      </span>
+                      <span class="fa-stack">
+                          <a href="#your-link">
+                              <i class="fas fa-circle fa-stack-2x"></i>
+                              <i class="fab fa-instagram fa-stack-1x"></i>
+                          </a>
+                      </span>
+                      <span class="fa-stack">
+                          <a href="#your-link">
+                              <i class="fas fa-circle fa-stack-2x"></i>
+                              <i class="fab fa-youtube fa-stack-1x"></i>
+                          </a>
+                      </span>
+                  </div> <!-- end of social-container -->
+              </div> <!-- end of col -->
+          </div> <!-- end of row -->
+      </div> <!-- end of container -->
+  </div> <!-- end of footer -->  
+  <!-- end of footer -->
+
+
+  <!-- Copyright -->
+  <div class="copyright bg-gray">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-6">
+                  <ul class="list-unstyled li-space-lg p-small">
+                      <li><a href="article.html">Article Details</a></li>
+                      <li><a href="terms.html">Terms & Conditions</a></li>
+                      <li><a href="privacy.html">Privacy Policy</a></li>
+                  </ul>
+              </div> <!-- end of col -->
+              <div class="col-lg-3">
+                  <p class="p-small statement">Copyright © <a href="#">Mustafa Brooky </a></p>
+              </div> <!-- end of col -->
+              <div class="col-lg-3">
+                  <p class="p-small statement">Distributed By: <a href="https://www.instagram.com/Steve73/" target="_blank">Steve73</a></p>
+              </div> <!-- end of col -->
+          </div> <!-- enf of row -->
+      </div> <!-- end of container -->
+  </div> <!-- end of copyright --> 
+  <!-- end of copyright -->
+  
+
+  <!-- Back To Top Button -->
+  <button onclick="topFunction()" id="myBtn">
+      <img src="images/up-arrow.png" alt="alternative">
+  </button>
+  <!-- end of back to top button -->
+    
+  <!-- Scripts -->
+  <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+  <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+  <script src="js/purecounter.min.js"></script> <!-- Purecounter counter for statistics numbers -->
+  <script src="js/isotope.pkgd.min.js"></script> <!-- Isotope for filter -->
+  <script src="js/scripts.js"></script> <!-- Custom scripts -->
+  <script src="js/main.js"></script>
+        </body>
+        </html>
